@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+// var num1 = new Number(34.5678);
+	var num1 = 34.5678;
+	var num2 = 700000;
+	var num3 = "34.5678px";
+	var num4 = "34.5678";
+	
+//표현 가능한 숫자의 속성을 구할 때 : Number.속성
+	document.write("표현가능한 가장 큰 수" + Number.MAX_VALUE + "<br>");
+	document.write("표현가능한 가장 작은 수" + Number.MIN_VALUE + "<br>");
+	document.write("숫자가 아닌 경우의 표기" + Number.NaN + "<br>");
+	document.write("양의 무한대" + Number.POSITIVE_INFINITY + "<br>");
+	document.write("음의 무한대" + Number.NEGATIVE_INFINITY + "<br>");
+	
+	document.write("num1 : " + num1.toString() + "<br>");  //숫자를 문자형으로 변환
+	document.write("num1 : " + num1.valueOf() + "<br>");	 //숫자를 문자형으로 변환
+	
+	document.write("num4 : " + num4 + "<br>"); //var num4 = "34.5678"; 문자
+	document.write("num4 : " + Number(num4) + "<br>"); //var num4 = 숫자
+	
+	document.write("num4 : " + Number(num3) + "<br>"); //var num3 = "34.5678px", 문자, NaN
+	document.write("num4 : " + parseInt(num3) + "<br>"); //var num3 = 34;
+	document.write("num4 : " + parseFloat(num3) + "<br>"); //var num3 = 34.5678
+	
+	
+	
+</script>
+
+</head>
+<body>
+
+</body>
+</html>

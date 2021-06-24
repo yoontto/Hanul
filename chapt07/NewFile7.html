@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+	//	$("li:nth-child(2)").css("border","1px dashed red");
+	//	$("li:nth-child(2)").parent().css("border","5px solid blue");
+		
+		$("#menu").children("li:nth-child(2)").css("border","1px dashed red");
+		.end().css("border","5px double blue");
+		
+		//end메소드는 이전 선택지로 돌려줌, children에서 li선택했으니까 end쓰면 ul(#menu) 선택으로 돌아감
+	}); //ready
+</script>
+</head>
+<body>
+	<h1>탐색선택자</h1>
+	<ul id="menu">
+		<li>내용1</li>
+		<li>내용2</li>
+		<li>내용3</li>
+	</ul>
+</body>
+</html>

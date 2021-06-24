@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#btn1").mouseenter(function() {
+			$("p").css("background-color", "yellow");
+		});//mouseenter
+
+		$("#btn1").mouseleave(function() {
+			$("p").css("background-color", "aqua");
+		});//mouseleave
+
+		$("#btn2").hover(function() {
+			$("p").css("background-color", "yellow");
+		}, function() {
+			$("p").css("background-color", "aqua");
+		});//hover
+
+	}); //ready
+</script>
+</head>
+<body>
+	<button id="btn1">mouseenter/leave</button>
+	<button id="btn2">hover</button>
+	<p>gngkgkgk</p>
+</body>
+</html>

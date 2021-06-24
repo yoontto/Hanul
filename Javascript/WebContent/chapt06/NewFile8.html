@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//윈도우 창 열기, 창 닫기
+	//window.open, window.close
+
+	//window.open("url 경로", "창이름", "옵션")
+	/* window.open("NewFile1.html", "popup창",
+			"width=300, height=400, left=810, top=340, "
+					+ "scrollbars=no, toolbars=no, locations=no")
+ */
+	var popupX = (screen.width - 300) / 2;
+	var popupY = (screen.height - 400) / 2;
+	window.open("NewFile1.html", "popup창",
+			"width=300, height=400, left=" + popupX + ", top=" + popupY + ", scrollbars=no, toolbars=no, status=no, locations=no")
+			
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

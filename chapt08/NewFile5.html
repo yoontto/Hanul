@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+		
+		$("#userName").focus();
+		
+		$("#userName").focus(function() {
+	//		$("#userName").val("");
+			$(this).val("");
+		}).blur(function() {
+	//		$("#userName").val("이름입력");
+			$(this).val("이름입력");
+		}); //메소드 체이닝
+
+		$("#userId").focus(function() {
+			$("#userId").val("");
+		}).blur(function() {
+			$("#userId").val("아이디입력");
+		}); //메소드 체이닝
+		
+		
+
+	}); //ready
+</script>
+</head>
+<body>
+	<p>
+		이&nbsp;&nbsp;&nbsp;름 : <input type="text" name="userName"
+			id="userName" value="이름 입력">
+	</p>
+	<p>
+		아이디 : <input type="text" name="userId" id="userId" value="아이디 입력">
+	</p>
+</body>
+</html>

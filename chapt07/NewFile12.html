@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#start").click(function() {
+
+			//		$("#wrap img").css("width","300");
+			//		$("#wrap img").attr("width","300");
+				$("#wrap img").prop("width","300");
+
+			
+			//$("#txt").text($("#wrap img").attr("src"));
+				$("#txt").text($("#wrap img").prop("src"));
+				
+				$("#box img").removeAttr("border");
+		});//click
+	}); //ready
+</script>
+</head>
+<body>
+	<h1>객체 조작 및 생성</h1>
+	<p id="wrap">
+		<img alt="가위" src="images/math_img_1.jpg" width="100">
+	</p>
+	<p id="txt"></p>
+	<p id="box">
+		<img alt="보" src="images/math_img_3.jpg" width="100" border="2">
+	</p>
+
+	<button id="start">시작</button>
+	<button id="refresh" onclick="location.reload();">새로고침</button>
+
+</body>
+</html>

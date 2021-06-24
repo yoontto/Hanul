@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+form, p, h1, div{
+	text-align: center;
+}
+
+textarea{
+	display: block;
+	margin: 0px auto;
+}
+
+</style>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#ok").click(function(){
+			var visitstr = $("textstr").val();
+			
+			$("txt").append(visitstr + "<br>");
+		});//ok
+		
+	});//ready
+</script>
+</head>
+<body>
+	<p>방명록을 남겨주세요</p>
+	<h1>글쓰기</h1>
+	<form name="formtext" id="formtext">
+		<textarea rows="15" cols="50" name="textstr" id="textstr">여기에 글을 써주세요.</textarea>
+		<input type="button" id="ok" value="확인" onclick="text_see();">
+		<input type="reset" value="취소">	
+	</form>
+	<div id="txt"></div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>내장객체</title>
+<!-- 	내장객체 : 자바스크립트 엔진에 내장
+			종류 : 문자(String), 날짜(Date), 배열(Array), 수학(Math) 객체 등 -->
+<script>
+	var tv = {
+		width : "30cm",
+		height : "25cm",
+		weight : "20kg",
+		color : "white",
+		off : function() {
+			document.write("전원 off" + "<br />");
+		}
+	}
+
+	//속성 출력
+	document.write(tv.width + "<br />"); //tv에 너비 속성을 출력합니다.
+	document.write(tv.height + "<br />"); //tv에 높이 속성을 출력합니다.
+	document.write(tv.weight + "<br />"); //tv에 무게 속성을 출력합니다.
+	document.write(tv.color + "<br />"); //tv에 컬러 속성을 출력합니다.
+
+	//tv 기능(메서드) 실행
+	tv.off();
+</script>
+</head>
+<body>
+
+</body>
+</html>

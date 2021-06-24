@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#btn1").click(function() {
+			$("p").css("background-color", "yellow");
+		});//click
+
+		$("#btn2").dblclick(function() {
+			$("p").css("background-color", "purple");
+		});//dblclick
+	}); //ready
+</script>
+</head>
+<body>
+	<button id="btn1">클릭</button>
+	<button id="btn2">더블클릭</button>
+
+	<p>내용</p>
+</body>
+</html>

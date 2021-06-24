@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	body{
+		height: 3000px;
+	}
+	
+	#txt{
+		position: fixed;
+		top: 10px;
+		right: 10px;
+		border: 1px solid red;
+	}
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+
+		$(window).scroll(function(){
+			$("#txt").text(Math.round($(this).scrollTop()));
+		});//scroll
+
+	}); //ready
+</script>
+</head>
+<body>
+	<div id="txt">0</div>
+</body>
+</html>

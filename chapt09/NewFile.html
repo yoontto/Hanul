@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+		//효과속도 : fast, normal, slow, 밀리초(1/1000)
+		$("#btn1").click(function () {
+			$("h1").hide(1000);
+		});//btn1 click
+		
+		$("#btn2").click(function () {
+			$("h1").show("slow");
+		});
+		
+		$("#btn3").click(function () {
+			$("h1").toggle("slow");
+		});
+
+
+	}); //ready
+</script>
+</head>
+<body>
+	<button id="btn1">HIDE</button>
+	<button id="btn2">SHOW</button>
+	<button id="btn3">TOGGLE</button>
+	<h1>내용</h1>
+</body>
+</html>

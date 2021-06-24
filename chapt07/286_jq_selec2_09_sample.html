@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>탐색 선택자</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	//입력 양식 필터 선택자 : 선택자 중에 콜론(:) 기호를 포함하는 선택자
+	//input:button, input:checkbox, input:file, input:image, 
+	//input:password, input:radio, input:reset, input:submit, input:text
+	//요소:checked, 요소:disabled, 요소:enabled, 요소:focus, 요소:input, 요소:selected
+		
+	//css()메서드 : 선택한 요소의 css 속성값을 가져오거나 style 속성을 추가
+	//attr()메서드 : 속성값을 가져오거나 속성값을 설정할 수 있는 메소드, 값이 변하지 않는것에 지정
+	
+	//prop()메서드 : 속성값을 가져오거나 속성값을 설정할 수 있는 메서드
+	//주의할 점은 속성(property)이라는 것 : ★★★★ 프로퍼티의 값은 변할 수 있게 하는것
+	//그래서, 속성중에 true/false 값을 가지는 속성들만을 위한 메소드
+	//대표적인 예로 hidden, readonly, checked, selected 등의 속성이 있음
+	
+	//$(function() {
+	$(document).ready(function() {
+	//	$("input").css("border", "1px dashed red");
+	//	$("input:text").css("border", "1px dashed red");
+	//	$("input[type='text']").css("border", "1px dashed red");
+	//	$(":text").css("border", "1px dashed red");
+	//	$("#userName").css("border", "1px dashed red");
+		
+	//	$("input[type='checkbox']").prop("checked",false);
+	//	$("input[type='checkbox']").attr("checked",false);
+	//	$("input:checked").prop("checked",false);
+	//	$(":checked").prop("checked",false);
+		$("#accept").prop("checked",false);
+		
+		$("#relSite").val("google").prop("selected",true);
+		//$ 쓰면 jquery 써야됨
+		
+	// attr();로 클래스 변경
+	//	$("선택자").attr("속성","속성값");
+	
+	// $("#pw").attr("type","password");
+	// $("#pw").attr("type","text");
+		
+		
+	});
+</script>
+</head>
+<body>
+	<h1>탐색 선택자</h1>
+	<p>
+		<label for="userName">이름</label> <input type="text" name="userName"
+			id="userName" />
+	</p>
+	<p>
+		<input type="checkbox" name="accept" id="accept" checked="checked" />
+		<label for="accept">사용자 동의</label>
+	</p>
+	<p>
+		<select name="relSite" id="relSite">
+			<option>사이트선택</option>
+			<option value="google">구글</option>
+			<option value="naver">네이버</option>
+			<option value="nate" selected="selected">네이트</option>
+		</select>
+	</p>
+</body>
+</html>

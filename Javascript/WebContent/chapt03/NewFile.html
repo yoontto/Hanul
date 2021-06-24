@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var userName = prompt("방문자의 이름은?",""); //첫번째 "" : 팝업창에 뜰 메시지, 두번째 "" : 사용자가 메시지 입력할 공간
+	if (userName.trim()){ //공백제거하는 함수
+		document.write(userName + "님 반갑습니다.")
+	} else {
+		location.reload(); //페이지 새로고침, 공백이 제거되면 입력값이 없기 때문에 페이지 새로고침 됨
+	}
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/* for (var i = 1; i <= 3; i++) {
+		for (var j = 1; j <= 2; j++) {
+			document.write(i + "행" + j + "열<br>");
+		}
+	} */
+
+	//세로 구구단
+	for (var i = 2; i <= 9; i++) {
+		document.write("<h1>" + i + "단</h1>");
+		for (var j = 1; j <= 9; j++) {
+			if ((i * j) < 10) {
+				document.write(i + "*" + j + "=" + "0" + (i * j) + "<br>");
+			} else {
+				document.write(i + "*" + j + "=" + (i * j) + " <br>");
+			}
+		}
+		document.write("<br>");
+	}
+
+	//가로 구구단
+	for (var i = 0; i <= 9; i++) {
+		for (var j = 2; j <= 9; j++) {
+			if (i == 0) {
+				document.write("&nbsp&nbsp&nbsp" + j + "단" + "&nbsp&nbsp&nbsp");
+			} else if ((i * j) < 10) {
+				document.write(j + "*" + i + "=" + "0" + (i * j) + "  \t");
+			} else {
+				document.write(j + "*" + i + "=" + (i * j) + "  \t");
+			}
+		}
+		document.write("<br>");
+	}
+	
+	
+	//팝업 구구단
+	var num = prompt("구구단의 단 수를 입력하세요.","");
+		
+			if(isNaN(num*1)){
+				alert("숫자를 입력하세요.","");
+				location.reload();
+			}else{
+				for (var i = num; i <= num ; i++) {
+					document.write("<h1>" + i + "단</h1>");
+					for (var j = 1; j <= 9; j++) {
+						if ((i * j) < 10) {
+							document.write(i + "*" + j + "=" + "0" + (i * j) + "<br>");
+						} else {
+							document.write(i + "*" + j + "=" + (i * j) + " <br>");
+						}
+					}
+				document.write("<br>");
+			}
+		}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

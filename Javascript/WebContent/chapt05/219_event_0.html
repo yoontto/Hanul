@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트</title>
+</head>
+<body>
+※ 브라우저 객체 모델(BOM)
+window, screen, location, history, navigator객체
+
+※ 문서 객체 모델(DOM) : 자바스크립트를 사용하여 문서객체를 선택하고 속성 또는 스타일 지정하기 위해
+document, 태그, 직접선택자(id, tag명, 클래스등), 인접관계선택자 등
+document.getElementById('아이디명');
+document.getElementsByTagName('요소(태그)명');
+document.formName.inputName;
+
+parentNode, childNodes, children, firstchild, previousSibling, nextSibling
+
+※ 자주 쓰이는 이벤트의 목록
+onclick : 객체를 클릭했을 때 
+ondblclick : 더블클릭할 때 
+onload : 문서나 객체가 로딩되었을 때 
+onmouseover : 마우스가 객체 위에 올라왔을 때 
+onmouseout : 마우스가 객체 바깥으로 나갔을 때 
+onfocus : 객체에 focus가 되었을 때 
+onblur : 객체가 focus를 잃었을 때 
+onchange : 객체의 내용이 바뀌고 focus를 잃었을 때 
+onerror : 에러가 발생했을 때 
+onkeydown : 키를 눌렀을 때 
+onkeypress : 키를 누르고 있을 때 
+onkeyup : 키를 눌렀다 뗐을 때 
+onreset : Reset 버튼을 눌렀을 때 
+onresize : 객체의 크기가 바뀌었을 때 
+onscroll : 스크롤바를 조작할 때 
+onsubmit : 폼이 전송될 때
+
+※ 브라우저 객체별 이벤트 핸들러
+선택 목록(select) : onblur, onchange, onfocus
+문자 필드(text) : onblur, onchange, onfocus, onselect
+문자 영역(textarea) : onblur, onchange, onfocus, onselect
+버튼(button) : onclick 
+체크박스(checkbox) : onclick 
+라디오 버튼(radio) : onclick
+링크 : onclick, onmouseover
+reset 버튼(reset) : onclick
+submit 버튼(button) : onclick 
+document : onload, onunload
+window : onload, onunload 
+폼(form) : onsubmit
+
+</body>
+</html>

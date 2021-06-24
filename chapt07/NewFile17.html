@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function() {
+	//	$("선택자").remove();	//제거
+	//	$("선택자").empty();	//비움
+
+	$("#line_1").remove();		//흔적만 남음(배경색)
+	$("#line_2").empty();		//흔적도 없이 사라짐
+
+	}); //ready
+</script>
+</head>
+<body>
+	<ul>
+		<li id="line_1" style="background-color: yellow;">내용1</li>
+		<li id="line_2" style="background-color: orange;">내용2</li>
+	</ul>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	
+	var i = 0;
+	
+	function myFunc() {  //선언적 함수
+		i++;
+		document.write("hello" + i + "<br>");
+	}
+
+	myFunc(); //myFunc함수 호출
+
+	
+	
+	var theFunc = function(){  //익명함수, 반드시 변수에 할당해서 사용
+		i++;
+		document.write("bye" + i + "<br>");
+	}
+	
+	theFunc(); //theFunc 함수 호출
+	
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

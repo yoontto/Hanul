@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function chColorOver() {
+		document.getElementsByTagName("input")[0].style.color = "red";
+		document.getElementsByTagName("input")[0].value = "마우스오버";
+	}
+
+	function chColorOut() {
+		docuement.getElementById("btn1")[0].style.color = "blue";
+		docuement.getElementById("btn1")[0].value = "마우스아웃";
+	}
+</script>
+
+</head>
+<body>
+	<input type="button" id="btn1" onmouseover="chColorOver();"
+		onmouseout="chColorOut();" value="마우스">
+</body>
+</html>

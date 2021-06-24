@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var t = "Hello Thank you good luck to you";  //문자열은 문자 배열이라는 뜻
+	       //0     6     12  16   21   26 29
+	
+	document.write(t.charAt(16) + "<br>");	//g, 16번째에 있는 글자 찾기
+	document.write(t.indexOf("you") + "<br>"); //12, 첫번째로 나오는 you 찾기
+	document.write(t.indexOf("you",16) + "<br>"); //29, 16번째 이후에 있는 you 찾기
+	document.write(t.lastIndexOf("you") + "<br>");//29,???
+	document.write(t.lastIndexOf("you", 25) + "<br>");//12,????
+	
+	document.write(t.match("luck")+ "<br>");  //luck, 일치하는 문자 반환, 없으면 null
+	document.write(t.search("luck")+ "<br>");  //21, 일치하는 인덱스 반환, 없으면 null
+	
+	document.write(t.substr(6,11)+ "<br>");  //Thank you g, 몇번째부터 몇글자
+	document.write(t.substring(6,11)+ "<br>");  //Thank, 몇번째부터 몇번째 미만까지 글자
+	
+	document.write(t.replace("you", "me")+ "<br>"); //Hello Thank me good luck to you, 첫번째로 일치하는 문자 대체문자로 바꿔줌
+	
+	document.write(t.toLowerCase()+ "<br>"); //소문자
+	document.write(t.toUpperCase() + "<br>"); //대문자
+	
+	document.write(t.length + "<br>"); //대문자
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var height = prompt("키를 입력하세요","0");
+	var weight = prompt("몸무게를 입력하세요","0");
+	
+	var hminhun = height - 100;
+	var low = hminhun * 0.75;
+	var avg = hminhun * 0.9;
+	var high = hminhun * 1.05;
+
+	if(isNaN(weight) || isNaN(height)){
+		alert("숫자만 입력하세요!");
+		
+	} else{
+		if(weight < low){
+		 alert("적정몸무게는 " + avg + "입니다.");
+		 alert("당신의 키는  " + height +", 몸무게는 " + weight + "로서 저체중입니다. ");
+		} else if (weight > low && weight < high) {
+		 alert("적정몸무게는 " + avg + "입니다.");
+		 alert("당신의 키는  "+ height +", 몸무게는 " + weight + "로서 정상체중입니다. ");
+		} else {
+		 alert("적정몸무게는 " + avg + "입니다.");
+		 alert("당신의 키는  " + height +", 몸무게는 " + weight + "로서 과체중입니다. ");
+		}
+	}
+	
+</script>
+</head>
+<body>
+
+</body>
+</html>
