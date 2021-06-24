@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>메인화면</title>
+
+<style type="text/css">
+@import url("css/index.css");
+</style>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="js/index.js"></script>
+
+<style>
+* {
+	margin: 0px auto;
+	padding: 0px;
+}
+
+.hd {
+	text-align: center;
+}
+
+/* Animation Canvas */
+.animation_canvas {
+	overflow: hidden;
+	position: relative;
+	width: 600px;
+	height: 400px;
+	margin: 0 auto;
+}
+
+/* Slider Panel */
+.slider_panel {
+	width: 3000px;
+	position: relative;
+}
+
+.slider_image {
+	float: left;
+	width: 600px;
+	height: 400px;
+}
+
+/* Slider Text Panel */
+.slider_text_panel {
+	position: absolute;
+	top: 300px;
+	left: 50px;
+}
+
+.slider_text {
+	position: absolute;
+	width: 250px;
+	height: 150px;
+	color: white;
+}
+
+/* Control Panel */
+.control_panel {
+	position: absolute;
+	top: 380px;
+	left: 270px;
+	height: 13px;
+	overflow: hidden;
+}
+
+.control_button {
+	width: 12px;
+	height: 46px;
+	position: relative;
+	float: left;
+	cursor: pointer;
+	background-image: url('img/point_button.png');
+}
+
+.control_button:hover {
+	top: -16px;
+}
+
+.control_button.active {
+	top: -31px;
+}
+</style>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+$(document).ready(function() {
+	var timer = null;
+	var refreshInterval = null;
+	
+	//이미지 갯수
+	var imgCnt = $(".slider_panel").children().length;
+	var imgIdx = 1;
+	//moveSlider 함수
+	function moveSlider(index) {
+		//그림 불러오기
+		var willMoveLeft = -(index * 600); //그림 왼쪽으로 움직이게 하기
+		
+		$(".slider_panel").animate({
+			left: willMoveLeft //세미콜론 없음
+		},"slow");
+		
+		//텍스트 가져오기
+		$(".slider_text[data-index=" + index +"]").show("fast").animate({
+			left: 0
+		});
+		$(".slider_text[data-index!=" + index +"]").hide("fast").animate({
+			left: -300
+		});
+		
+		//controll 버튼 active하기""
+		$(".control_button[data-index=" +index+ "]").addClass("active");
+		$(".control_button[data-index!=" +index+ "]").removeClass("active");
+	}	//moveSlider
+	
+	//timer 함수로 돌리기 위해서
+	timer = function () {
+		moveSlider(imgIdx);
+		if (imgIdx < imgCnt - 1) {
+			imgIdx++;	
+		} else {
+			imgIdx = 0;
+		}
+		
+		
+	};//timer
+	
+	//canvas 올려놨을 때 그림 정지
+	$(".animation_canvas").on({
+		"mouseenter" : function(){
+			clearInterval(refreshInterval);
+		},
+		"mouseleave":function(){
+			refreshInterval = setInterval(timer, 3000);
+		}
+	});
+	
+	//control_button data-index 할당, 슬라이더 그림 불러오기
+	$(".control_button").each(function(index){
+		$(this).attr("data-index",index);
+	}).click(function () {
+		var index = $(this).attr("data-index")
+		imgIdx = index; //내가 클릭한 index 번호를 3초마다 돌리는 imgIdx로 전달
+		//해당 인덱스에 대한 그림 불러오기
+		moveSlider(index);
+	});
+	
+	//초기 텍스트 위치 지정 및 data-index 할당
+	$(".slider_text").css("left",-300).each(function(index) {
+		$(this).attr("data-index",index);
+	});
+	
+	//초기 0번째 텍스트 가져오기
+	$(".slider_text[data-index="+0+"]").show("fast").animate({
+		left:0 //세미콜론 없음
+	},"slow");
+	
+	//초기 0번째 controll_button을 active로 설정
+	$(".control_button[data-index="+0+"]").addClass("active");
+	
+	//3초마다 자동으로 움직이는 timer 함수 호출
+	refreshInterval = setInterval(timer, 3000);
+	
+	
+});
+</script>
+</head>
+<body>
+	<h1 class="hd">Test Header</h1>
+	<div class="animation_canvas">
+		<div class="slider_panel">
+			<a href="http://www.naver.com" target="_blank"><img
+				src="img/Desert.jpg" class="slider_image" /></a> <a
+				href="http://www.google.com" target="_blank"><img
+				src="img/Hydrangeas.jpg" class="slider_image" /></a> <a
+				href="http://www.daum.net" target="_blank"><img
+				src="img/Jellyfish.jpg" class="slider_image" /></a> <a
+				href="http://www.nate.com" target="_blank"><img
+				src="img/Koala.jpg" class="slider_image" /></a> <a
+				href="http://www.yahoo.co.kr" target="_blank"><img
+				src="img/Lighthouse.jpg" class="slider_image" /></a>
+		</div>
+		<div class="slider_text_panel">
+			<div class="slider_text">
+				<h1>0. Lorem ipsum</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+			</div>
+			<div class="slider_text">
+				<h1>1. Nulla eget</h1>
+				<p>Nulla eget sapien mauris, ornare elementum elit.</p>
+			</div>
+			<div class="slider_text">
+				<h1>2. Quisque</h1>
+				<p>Quisque eleifend augue nec lacus lobortis porta.</p>
+			</div>
+			<div class="slider_text">
+				<h1>3. Donec</h1>
+				<p>Donec a ligula lectus, eu iaculis justo.</p>
+			</div>
+			<div class="slider_text">
+				<h1>4. Vivamus</h1>
+				<p>Vivamus scelerisque mauris id nunc dictum sit amet.</p>
+			</div>
+		</div>
+		<div class="control_panel">
+			<!-- control_button과 같은 요소는 div태그로 만들고 
+			스타일시트에서 background속성으로 이미지를 설정 
+			이렇게 하면 스타일시트의 hover필터와 active필터 사용 가능-->
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+			<div class="control_button"></div>
+		</div>
+	</div>
+	<h1 class="hd">Test Footer</h1>
+</body>
+</html>
