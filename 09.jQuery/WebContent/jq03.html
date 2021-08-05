@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery03 - cdn과 내장 jquery /이벤트 (empty, append) </title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(function(){
+	$("#btn").on("click", function(){
+		$("#display").empty(); //디스플레이의 내용을 비우고
+		$("#display").append("안녕하세용~~~~~히히히ㅣ"); //새로운 내용 추가
+	});//on()	
+});//ready()
+</script>
+</head>
+<body>
+<button id="btn">클릭하세요!</button>
+<br><br>
+
+<div id="display">
+클릭하시면 여기의 글자가 변경됩니다.
+</div>
+</body>
+</html>

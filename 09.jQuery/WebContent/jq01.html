@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery 01 - css 홀짝과 순서별 적용</title>
+<!-- <style type="text/css">
+/* table tr {
+	background-color: #ff0000; /* red, green, blue 니까 ff0000은 red */
+	color: #ffffff;
+} */
+</style> -->
+<script type="text/javascript" src="jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("tr:odd").css("background", "#ff0000");
+		$("tr:even").css("background", "#00ff00");
+		$("tr:first").css("background", "#0000ff");
+
+	});//ready(), onload 이벤트랑 동일
+
+	/* function fnView(){~~} --> 자바스크립트 */
+</script>
+</head>
+<body>
+	<div align="center">
+		<table>
+			<tr>
+				<th>이름</th>
+				<th>혈액형</th>
+				<th>주소</th>
+			</tr>
+			<tr>
+				<td>홍길동</td>
+				<td>A형</td>
+				<td>광주시 서구 운천로</td>
+			</tr>
+			<tr>
+				<td>홍길동</td>
+				<td>A형</td>
+				<td>광주시 서구 운천로</td>
+			</tr>
+			<tr>
+				<td>홍길동</td>
+				<td>A형</td>
+				<td>광주시 서구 운천로</td>
+			</tr>
+			<tr>
+				<td>홍길동</td>
+				<td>A형</td>
+				<td>광주시 서구 운천로</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery05 - this 키워드 사용 (each, this) </title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	//alert($("p").text());		//p태그 접근(태그 선택자)해서 text 값 가져오기, 3개 p태그 전부 다 가져옴
+	$("p").each(function(){		//function 이름 없을 때 "익명함수"라고 함
+		//alert($("p").text());
+		alert($(this).text());		//this 키워드, 처음에 상위태그에 지정한 p를 또 선택하는 거니까
+	});//반복함수 each
+});//ready()
+</script>
+</head>
+<body>
+<p>java</p>
+<p>jsp</p>
+<p>android</p>
+</body>
+</html>

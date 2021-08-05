@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test01 - jq04 응용한 구구단 출력(for, if, var 변수 선언)</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		var dan = $("#dan").val();
+		var html = dan + "단을 출력합니다. <br>";
+		
+		for(var i = 1; i <= 9; i++){
+			html += dan + " * " + i + " = " + dan * i + "<br>";
+		}
+		$("#display").empty();
+		$("#display").append(html);
+	});
+});//ready()
+</script>
+</head>
+<body>
+
+<input type="number" id="dan" min="2" max="9">
+<!-- 숫자 2~9까지만 출력 가능 -->
+<button id="btn">구구단 출력</button>
+
+<br><br>
+	
+<div id="display">
+여기에 구구단이 출력됩니다.
+</div>
+
+</body>
+</html>
