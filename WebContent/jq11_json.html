@@ -31,7 +31,7 @@ function resultHtml(data){
 	html += "<th>전화번호</th>";
 	html += "</tr>";
 	
-	$.each(data, function(key, value){
+	$.each(data, function(key, value){	//순수한 JSON 구조로 key값을 주지 않고 만들었기 때문에 key없이 작성
 		html += "<tr align='center'>";
 		html += "<td>" + value.name + "</td>";
 		html += "<td>" + value.id + "</td>";

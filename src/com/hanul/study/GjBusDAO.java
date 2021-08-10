@@ -5,7 +5,7 @@ import java.net.URL;
 import net.htmlparser.jericho.Source;
 
 public class GjBusDAO {
-	public Source makeJson() {
+	public Source makeJson() {	//parser 사용
 		Source source = null;
  		try {
 			String addr = "http://api.gwangju.go.kr/json/lineInfo";

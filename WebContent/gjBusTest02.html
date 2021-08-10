@@ -12,7 +12,7 @@ $(document).ready(function(){
 	$("#btn").click(function(){
 		$.ajax({
 			dataType : "json",
-			url : "gjBusJson.jsp", //광주광역시 버스정보 서버에 요청하겠다
+			url : "gjBusJson.jsp", 
 			success : function(data) {resultHtml(data);},
 			error : function(){ alert("로딩실패!");}
 		});

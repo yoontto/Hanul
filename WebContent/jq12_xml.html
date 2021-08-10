@@ -26,7 +26,7 @@ function resultHtml(data){
 	//alert(images.length); // 9출력 -> 배열 길이
 	var html = "";
 	for(var i = 0; i < images.length; i++){
-		var imgPath = images.eq(i);
+		var imgPath = images.eq(i);	//.eq() 메서드는 선택한 요소에 인덱스 번호에 해당하는 요소를 찾습니다
 		//alert(imgPath);	// Object alert가 9번 출력
 		//alert(imgPath.text());	// 텍스트로 변환, 이미지 이름 출력
 		html += "<img src='" + imgPath.text() + "' width='150' height='150'/><br/>";
