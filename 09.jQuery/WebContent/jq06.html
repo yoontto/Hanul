@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery06 - 자식요소 선택자 (length)</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	//table tag 선택자
+	alert("table tag의 개수 : " + $("table").length);	//값 : 1
+	
+	//table tag의 자식요소인 tr
+	alert("table tr tag의 개수 : " + $("table tr").length); //값 : 3
+	
+	//table tag의 자식요소인 tr의 자식요소인 td 선택자
+	alert("table tr td tag의 개수 : " + $("table tr td").length); //값: 6
+});//ready()
+</script>
+</head>
+<body>
+<table border="1">
+	<tr><td>AAA</td><td>BBB</td></tr>
+	<tr><td>DDD</td><td>CCC</td></tr>
+	<tr><td>EEE</td><td>FFF</td></tr>
+</table>
+</body>
+</html>

@@ -2,18 +2,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>jquery05 - this 키워드 사용 (each, this) </title>
+<title>jquery05 - 선택자(id, class) / 함수 (each, eq(a), this) </title>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
 	아래의 내장 js의 src를 사용해서 대비해준다. -->
 <script src="jQuery/jquery-3.6.0.js"></script>
 <script>
 $(document).ready(function(){
-	//alert($("p").text());		//p태그 접근(태그 선택자)해서 text 값 가져오기, 3개 p태그 전부 다 가져옴
-	$("p").each(function(){		//function 이름 없을 때 "익명함수"라고 함
+	//alert($("p").text());		//p태그 접근(태그 선택자)해서 text 값 가져오기, 3개 p태그 한번에 출력(alert 한개창에 모든 내용 넣음)
+
+//	$("p").each(function(){		//function 이름 없을 때 "익명함수"라고 함
 		//alert($("p").text());
-		alert($(this).text());		//this 키워드, 처음에 상위태그에 지정한 p를 또 선택하는 거니까
-	});//반복함수 each
+//		alert($(this).text());		//this 키워드, 처음에 상위태그에 지정한 p를 또 선택하는 거니까
+//	});//반복함수 each
+	
+//	$("div").each(function(){
+//		alert($(this).text());
+//	});	//tag 선택자.each();
+
+	//alert($("div").text());	//태그선택자, 3개 p태그 한번에 출력(alert 한개창에 모든 내용 넣음)
+	alert($("div:eq(1)").text());	//태그선택자 : 필터선택자(배열과 같이 0번부터 선택)
+	alert($("div:first").text());
+	alert($("div:last").text());
+	
+	alert($("div#a").text());	//tag선택자 : #id선택자
+	alert($("#a").text());		//tag선택자 : #id선택자
+	alert($("div.b").text());	//tag선택자.class 선택자
+	alert($(".b").text);		//.class 선택자
 });//ready()
 </script>
 </head>
@@ -21,5 +36,9 @@ $(document).ready(function(){
 <p>java</p>
 <p>jsp</p>
 <p>android</p>
+
+<div id="a">AAA</div>
+<div class="b">BBB</div>
+<div>CCC</div>
 </body>
 </html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq12 - xml로 처리하는 방법</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		$.ajax({
+			dataType: "xml",
+			url : "imgList.xml",
+			success : function(data){resultHtml(data);},
+			error : function(){alert("로딩 실패!");}
+		});//ajax
+	});//click()
+});//ready()
+
+function resultHtml(data){
+	//alert("로딩 성공!");
+	var images = $(data).find("img");
+	//alert(images); // Object 출력 -> 배열로 바꾼다는 소리
+	//alert(images.length); // 9출력 -> 배열 길이
+	var html = "";
+	for(var i = 0; i < images.length; i++){
+		var imgPath = images.eq(i);
+		//alert(imgPath);	// Object alert가 9번 출력
+		//alert(imgPath.text());	// 텍스트로 변환, 이미지 이름 출력
+		html += "<img src='" + imgPath.text() + "' width='150' height='150'/><br/>";
+		//alert(html);
+	}
+	//$("#display").empty();
+	//$("#display").append(html);
+	$("#display").html(html); // empty랑 append 한번에 해결
+	
+}
+</script>
+</head>
+<body>
+<button id="btn">
+이미지 정보보기
+</button>
+<div id="display">이미지 출력</div>
+</body>
+</html>

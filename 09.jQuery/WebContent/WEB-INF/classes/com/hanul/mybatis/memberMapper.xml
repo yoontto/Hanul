@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanul.mybatis.memberMapper.xml">
+	<!-- SQL 문장 작성 -->
+	<!-- 
+		<insert | delete | update | select ~~ > 
+			- id 속성(식별자) : DAO 에서 설정한 값
+				>> session.insert("memberInsert", dto);
+			- parameterType 속성 : 매개변수 타입 (Class, PDT) >> 생략가능
+			- 매개변수 처리 : dto.getName() >> #{속성명}
+			- !!! SQL 문장 마지막에 세미콜론 입력하지 않기 !!!!
+			- resultType 속성 : select 쿼리를 수행했을 때 결과 타입
+	 -->
+	 
+	 <select id = "memberSearchAllJson01" resultType = "MemberDTO">
+      select * from Member
+   </select>
+</mapper>

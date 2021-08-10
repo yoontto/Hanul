@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq10 - ajax 이용해 데이터 가져오기</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		$.ajax({
+			dataType: "json",
+			url : "memberList01.jsp",
+			success : function(data){resultHtml(data);},
+			error : function(){alert("로딩실패");}
+		}); //ajax()
+	});//click()
+});//ready()
+
+function resultHtml(data){
+	alert("로딩성공");
+	var html = "<table border='1'>";
+	html += "<tr>";
+	html += "<th>이름</th>";
+	html += "<th>아이디</th>";
+	html += "<th>비밀번호</th>";
+	html += "<th>나이</th>";
+	html += "<th>주소</th>";
+	html += "<th>전화번호</th>";
+	html += "</tr>";
+	
+	$.each(data, function(key, value){
+		html += "<tr align='center'>";
+		html += "<td>" + value.member.name + "</td>";
+		html += "<td>" + value.member.id + "</td>";
+		html += "<td>" + value.member.pw + "</td>";
+		html += "<td>" + value.member.age + "</td>";
+		html += "<td>" + value.member.addr + "</td>";
+		html += "<td>" + value.member.tel + "</td>";
+		html += "</tr>";
+	});
+	
+	html += "</table>";
+	
+	$("#display").empty();
+	$("#display").append(html);
+}
+</script>
+</head>
+<body>
+<button id="btn">회원목록 가져오기</button>
+<br><br>
+<div id="display">
+여기에 회원목록이 출력됩니다.
+</div>
+
+</body>
+</html>

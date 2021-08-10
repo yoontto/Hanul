@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery08 - JSON 활용</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		$.getJSON("member.json",function(data){	//변수 data는 member.json에 있는 데이터 
+			//alert("JSON Data Load Success!");
+			var html = "<table border='1'>";
+			html += "<tr><th>Num</th><th>Name</th><th>Age</th><th>Addr</th><th>Tel</th></tr>";
+			
+			$.each(data, function(key, value){ //상위에서 넘어온 변수data가 each로 오고 each내 익명함수의 데이터로 다시 쓰임
+				html += "<tr align='center'>";
+				html += "<td>" + value.member.num + "</td>"; //value.키값.가져올속성
+				html += "<td>" + value.member.name + "</td>"; //value.키값.가져올속성
+				html += "<td>" + value.member.age + "</td>"; //value.키값.가져올속성
+				html += "<td>" + value.member.addr + "</td>"; //value.키값.가져올속성
+				html += "<td>" + value.member.tel + "</td>"; //value.키값.가져올속성
+				html += "</tr>";
+			});//each()
+			
+			html += "</table>";
+			$("#display").empty();
+			$("#display").append(html);
+		});//getJSON()
+	});//click()
+});//ready()
+</script>
+</head>
+<body>
+
+<button id="btn">JSON Data Load</button>
+
+<br><br>
+
+<div id="display">
+Json data loading...
+</div>
+
+</body>
+</html>
