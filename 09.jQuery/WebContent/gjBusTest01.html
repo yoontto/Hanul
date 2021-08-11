@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>gjBus - 광주 버스 api json 이용</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		$.ajax({
+			dataType : "json",
+			url : "http://api.gwangju.go.kr/json/lineInfo", //광주광역시 버스정보 서버에 요청하겠다
+			success : function(data) {resultHtml(data);},
+			error : function(){ alert("로딩실패!");}
+		});
+	});
+});//ready()
+
+function resultHtml(data){
+	alert("로딩성공!");
+	var html = "<table border='1'>";
+	html += "<tr>";
+	html += "<th>노선번호</th>";
+	html += "<th>출발지</th>";
+	html += "<th>도착지</th>";
+	html += "<th>첫차</th>";
+	html += "<th>막차</th>";
+	html += "<th>운행간격</th>";
+	html += "<th>노선종류</th>";
+	html += "</tr>";
+	
+	
+	$.each(data,function(key, value){
+		if(key == "LINE_LIST"){
+			$.each(value, function(key, value){
+				html += "<tr align='center'>";
+				html += "<td>"+ value.LINE_NAME +"</td>";
+				html += "<td>"+ value.DIR_UP_NAME +"</td>";
+				html += "<td>"+ value.DIR_DOWN_NAME +"</td>";
+				html += "<td>"+ value.FIRST_RUN_TIME +"</td>";
+				html += "<td>"+ value.LAST_RUN_TIME +"</td>";
+				html += "<td>"+ value.RUN_INTERVAL +"</td>";
+				//html += "<td>"+ value.LINE_KIND +"</td>";
+				if(value.LINE_KIND == "1"){
+					html += "<td>급행간선</td>";					
+				} else if (value.LINE_KIND == "2"){
+					html += "<td>간선</td>";					
+				} else if (value.LINE_KIND == "3"){
+					html += "<td>지선</td>";
+				} else if (value.LINE_KIND == "4"){
+					html += "<td>마을버스</td>";
+				} else if (value.LINE_KIND == "5"){
+					html += "<td>공항버스</td>";
+				} else if (value.LINE_KIND == "6"){
+					html += "<td>광역버스</td>";
+				}
+				html += "</tr>";
+			});//each()
+		}
+	});//each
+	html += "</table>";
+	
+	$("#display").empty();
+	$("#display").append(html);
+}
+</script>
+</head>
+<body>
+<!-- 
+CORS : 교차출처 리소스 공유 (Cross-Origin Resource Sharing)
+1. allow control allow origin 검색
+2. https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf/related
+3. 확장프로그램을 크롬에 추가
+4. 주소표시줄 오른쪽 상단의 확장프로그램 > c:아이콘 활성화 시키기
+ -->
+<button id="btn">
+광주광역시 버스 노선정보
+</button>
+<div id="display">여기에 버스 노선 정보가 출력됩니다.</div>
+</body>
+</html>

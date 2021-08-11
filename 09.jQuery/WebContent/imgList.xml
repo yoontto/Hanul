@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+<!-- 
+	xml의 태그는 자신이 정의해서 만듦
+	한번 만들어 놓으면 다음에는 자동완성 됨
+	find 함수 많이 사용
+ -->
+	<item>
+		<img>images/apple1.jpg</img>
+	</item>
+	<item>
+		<img>images/apple2.jpg</img>
+	</item>
+	<item>
+		<img>images/apple3.jpg</img>
+	</item>
+	<item>
+		<img>images/banana1.jpg</img>
+	</item>
+	<item>
+		<img>images/banana2.jpg</img>
+	</item>
+	<item>
+		<img>images/banana3.jpg</img>
+	</item>
+	<item>
+		<img>images/pear1.jpg</img>
+	</item>
+	<item>
+		<img>images/pear2.jpg</img>
+	</item>
+	<item>
+		<img>images/pear3.jpg</img>
+	</item>
+</items>

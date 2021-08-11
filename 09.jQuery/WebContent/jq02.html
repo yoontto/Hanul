@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery - 이벤트:스타일 적용(addClass, removeAttr, css, click)</title>
+<style type="text/css">
+.bg {
+	background-color: red;
+	width: 250px;
+	height: 150px;
+}
+</style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+/* cdn 방식을 이용해서 jquery 사용하기 */
+$(function(){ /* ready부분까지 생략하고  $(function(){}); 이렇게만 써도 됨 */
+	$("#display").css("background","silver").css("width","300px").css("height","200px");
+	$("#display").click(function(){
+		$("#display").removeAttr("style");//속성 제거
+		//$("#display").addClass("bg");//bg라는 클래스에 걸려있는 속성을 추가하겠다.
+		$(this).addClass("bg");
+	});//click
+});//ready
+</script>
+</head>
+<body>
+<div style="background-color: yellow; width: 200px; height: 100px;">
+안녕하세요! 감사해요~ 잘있어요~ 다시 만나요~
+</div>
+
+<div class="bg">
+안녕하세요, 감사해요~~
+</div>
+
+<div id="display">
+안녕하세요~~~
+</div>
+</body>
+</html>

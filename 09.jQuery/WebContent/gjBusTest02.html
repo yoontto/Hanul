@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>CORS 없이 만들기</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		$.ajax({
+			dataType : "json",
+			url : "gjBusJson.jsp", 
+			success : function(data) {resultHtml(data);},
+			error : function(){ alert("로딩실패!");}
+		});
+	});
+});//ready()
+
+function resultHtml(data){
+	alert("로딩성공");
+	var html = "<table border='1'>";
+	html += "<tr>";
+	html += "<th>노선번호</th>";
+	html += "<th>출발지</th>";
+	html += "<th>도착지</th>";
+	html += "<th>첫차</th>";
+	html += "<th>막차</th>";
+	html += "<th>운행간격</th>";
+	html += "<th>노선종류</th>";
+	html += "</tr>";
+	
+	$.each(data, function(key,value){
+		if(value.LINE_KIND != 6){
+			html += "<tr align='center'>";
+			html += "<td>"+ value.LINE_NAME +"</td>";
+			html += "<td>"+ value.DIR_UP_NAME +"</td>";
+			html += "<td>"+ value.DIR_DOWN_NAME +"</td>";
+			
+			if(value.FIRST_RUN_TIME == null){
+				html += "<td>" + "-" + "</td>";
+			} else {
+				html += "<td>" + value.FIRST_RUN_TIME + "</td">; 
+			}
+			
+			if(value.LAST_RUN_TIME == null){
+				html += "<td>" + "-" + "</td>";
+			} else {
+				html += "<td>" + value.LAST_RUN_TIME + "</td">; 
+			}
+			
+			html += "<td>"+ value.RUN_INTERVAL +"</td>";
+			if(value.LINE_KIND == "1"){
+				html += "<td>급행간선</td>";					
+			} else if (value.LINE_KIND == "2"){
+				html += "<td>간선</td>";					
+			} else if (value.LINE_KIND == "3"){
+				html += "<td>지선</td>";
+			} else if (value.LINE_KIND == "4"){
+				html += "<td>마을버스</td>";
+			}
+			html += "</tr>";
+		}
+	});
+	
+	html += "</table>";
+	$("#display").empty();
+	$("#display").append(html);
+}
+</script>
+</head>
+<body>
+<button id="btn">
+광주광역시 버스 노선정보
+</button>
+<div id="display">여기에 버스 노선 정보가 출력됩니다.</div>
+</body>
+</html>

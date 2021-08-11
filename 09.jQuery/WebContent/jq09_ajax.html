@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jq09 - ajax!!</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		$.ajax({
+			dataType : "json", //어떤 데이터 타입인지
+			url : "memberList.json", //어떤 데이터 받아올건지 파일명
+			success : function(data){resultHtml(data);}, //성공하면 파일에서 데이터 받아와서 resultHtml이라는 함수에 데이터를 넣겠다
+			error : function(){alert("로딩실패");} //실패하면 alert을 띄우겠다
+		});//ajax()
+	});//click()
+});//ready()
+
+function resultHtml(data){ //성공할 경우 실행할 함수
+	alert("로딩 성공!");
+	var html = "<table border='1'>";
+	html += "<tr><th>Num</th><th>Name</th><th>Age</th><th>Addr</th><th>Tel</th></tr>";
+	
+	$.each(data, function(key, value){	//JSON내의 데이터를 그대로 받아오는 상황인데, 파일을 보면 key값이 없으므로 호출할 때 키값은 쓰지 않는다.
+		html += "<tr align='center'>";
+		html += "<td>" + value.num + "</td>";
+		html += "<td>" + value.name + "</td>";
+		html += "<td>" + value.age + "</td>";
+		html += "<td>" + value.addr + "</td>";
+		html += "<td>" + value.tel + "</td>";
+	});//each()
+	
+	html += "</table>";
+	$("#display").empty();
+	$("#display").append(html);
+}
+
+</script>
+</head>
+<body>
+<button id="btn">JSON Data Load</button>
+
+<br><br>
+
+<div id="display">
+Json data loading...
+</div>
+</body>
+</html>

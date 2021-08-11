@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test jquery02</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+
+$(document).ready(function(){
+	var regpw = /^[a-zA-Z0-9]{5-10}$/;
+	var pw = $("#pw").val(); 
+		
+	$("#id").keyup(function(){
+		$.ajax({
+			dataType : "json",
+			url : "memberList01.jsp",
+			success : function(data){resultFill(data);},
+			error : function(){alert("로딩실패");}
+		});//ajax
+	});//idkeyup
+	
+	/* $("#pw").keyup(function(){
+		$.each({
+			if(!regpw.test(pw)){
+				$("#emptypw").html("비밀번호는 5~10자리입니다.");
+				return false;
+			} else {
+				$("#emptypw").html("사용가능합니다.");
+			}
+		});
+	});//pwkeyup */
+});//ready()
+
+function resultFill(data){
+	//alert(value.member.id);
+	var chk = $(data).find("member");
+	var userInput = $("#id").val(); 
+	var html = null;
+	
+	/* for(var i = 0; i < chk.length; i++){
+		//var id = chk.eq(i).find("id");
+		if(id == userInput){
+			html = "이미 존재하는 아이디입니다.";
+		} else {
+			html = "사용할 수 있는 아이디입니다.";
+		}
+	} */
+	
+	 $.each(data, function(key, value){
+		 //chk = value.member.id.toString(); 
+		if(value.member.id.toString() == userInput){
+			html = "이미 존재하는 아이디입니다.";
+			return false;
+		} else {
+			html = "사용가능";
+		}
+	});//each
+			$("#empty").html(html);
+	
+}
+</script>
+</head>
+<body>
+	<form method="post" action="index.jsp">
+		<table border="1" align="center">
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="id" id="id"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><span id="empty">  </span></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="pw" id="pw"></td>
+			</tr>
+			<tr>
+				<td colspan="3"><span id="emptypw"> </span></td>
+			</tr>
+			<tr>
+				<td>비밀번호 확인</td>
+				<td><input type="password" name="pwchk" id="pwchk"></td>
+			</tr>
+			
+		</table>
+	</form>
+</body>
+</html>
