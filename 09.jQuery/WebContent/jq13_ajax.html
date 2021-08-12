@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jquery 13 - ajax로 입력값 넘기기</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	$("#btn").click(function(){
+		var num1 = $("#num1").val();
+		if(num1.trim() == ""){
+			alert("첫 번째 정수를 입력하세요!");
+			$("#num1").val("");
+			$("#num1").focus(); 
+			return;	//프로그램에서 이뤄진 동작 후에 결과값 반환위해 사용하는게 리턴
+			// 리턴 만나면 프로그램 멈춤, 아래부분은 실행 안됨
+			
+		}//if
+		
+		var num2 = $("#num2").val();
+		if(num2.trim() == ""){
+			alert("두 번째 정수를 입력하세요!");
+			$("#num2").val("");
+			$("#num2").focus(); 
+			return;	//두번째 if 리턴 안해주면 바로 결과창으로 넘어감
+		}//if
+		
+		//alert("num1 : " + num1 + "\nnum2 : " + num2);
+		
+		var param = "num1="+num1+"&num2="+num2;
+		//form으로 넘겨줄 때 주소창에  param의 형태로 붙어가는 소스를 ajax로 넘겨줄 거임
+		//alert(param);
+		
+		$.ajax({
+			dataType : "text",
+			url : "jq13.jsp",
+			data : param, //위에서 만든 문자열 변수
+			success : function(data){resultHtml(num1, num2, data);},
+			error : function(){alert("실패!");}
+		});//ajax
+	});//click()
+});//ready()
+
+function resultHtml(num1, num2, data){
+	//alert("성공~");
+	var html = num1 + "부터" + num2 + "까지의 누적합 : " + data;
+	$("#display").html(html);
+}
+</script>
+</head>
+<body>
+<input type="number" id="num1">
+~
+<input type="number" id="num2">
+<button id="btn">누적합 계산하기</button>
+<br><br>
+<div id="display">
+결과값이 출력되는 영역
+</div>
+</body>
+</html>
