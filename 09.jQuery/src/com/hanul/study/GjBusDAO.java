@@ -17,4 +17,17 @@ public class GjBusDAO {
 		}
  		return source;
 	}
+	
+	public Source makeXml() {	//parser 사용
+		Source source = null;
+ 		try {
+			String addr = "http://api.gwangju.go.kr/xml/lineInfo";
+			URL url = new URL(addr);
+			source = new Source(url);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("makeJson() Exception!");
+		}
+ 		return source;
+	}
 }
