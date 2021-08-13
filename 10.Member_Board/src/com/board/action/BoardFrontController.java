@@ -24,19 +24,28 @@ public class BoardFrontController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String ctx = request.getContextPath();
 		String command = uri.substring(ctx.length());
+		System.out.println("uri" + uri);
+		System.out.println("ctx" + ctx);
+		System.out.println("command" + command);
 		
 		//2. 클라이언트의 요청과 실제 처리할 비지니스 로직 연결
 		// *.me -> command -> Member~~~Action.java
 		Action action = null;
 		ActionForward forward = null;
+		if(command.equals("/boardList.bo")) {
+			action = new BoardListAction();
+			forward = action.excute(request, response);
+		}
 		
 		
 		//3. 페이지전환 방식 정해줘야 함 redirect or forward
 		if(forward != null) {	//true : sendRedirect()
-			response.sendRedirect(forward.getPath());
-		} else {				//false : forward()
-			RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
-			rd.forward(request, response);
+			 if(forward.isRedirect()) {   //true : sendRedirect()
+	            response.sendRedirect(forward.getPath());
+	         }else {                     //false : forward()
+	            RequestDispatcher rd = request.getRequestDispatcher(forward.getPath());
+	            rd.forward(request, response);
+	         }
 		}
 	}
 }

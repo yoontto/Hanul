@@ -5,7 +5,7 @@
 <configuration>
 	<properties resource="com/hanul/mybatis/db.properties"/>
 	<typeAliases>
-		<typeAlias type="com.hanul.study.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.member.study.MemberDTO" alias="MemberDTO"/>
 		<!-- DTO 만들고 작성하는 게 좋음, DTO 없을 때 alias 쓰면 오류 뜸 -->
 	</typeAliases>
 	<environments default="development">

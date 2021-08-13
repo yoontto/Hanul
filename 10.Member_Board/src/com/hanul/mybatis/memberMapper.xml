@@ -3,5 +3,12 @@
  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hanul.mybatis.memberMapper.xml">
-
+	<insert id="joinMember" parameterType="MemberDTO">	<!-- 파라미터 타입 생략 가능, 리절트타입 생략 불가 -->
+		insert into boardMember
+		values(#{member_id}, #{member_pw}, #{member_name}, #{member_age}, #{member_gender}, #{member_email})
+	</insert>
+	
+	<select id="isMember" parameterType="MemberDTO" resultType="MemberDTO">
+		select * from boardMember where member_id = #{member_id}
+	</select>
 </mapper>

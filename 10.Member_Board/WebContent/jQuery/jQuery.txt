@@ -1,0 +1,9 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- 위의 cdn 방식은 네트워크에 문제가 생길 경우 동작이 안되므로
+	아래의 내장 js의 src를 사용해서 대비해준다. -->
+<script src="jQuery/jquery-3.6.0.js"></script>
+<script>
+$(document).ready(function(){
+	
+});//ready()
+</script>
