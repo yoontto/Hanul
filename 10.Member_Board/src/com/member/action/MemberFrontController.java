@@ -52,6 +52,9 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/memberLogoutAction.me")) {
 			action = new MemberLogoutAction();
 			forward = action.excute(request, response);
+		} else if(command.equals("/MemberJoin_IdCheckAction.me")) {
+			action = new MemberJoin_IdCheckAction();
+			forward = action.excute(request, response);
 		}
 		
 		//3. 페이지전환 방식 정해줘야 함 redirect or forward

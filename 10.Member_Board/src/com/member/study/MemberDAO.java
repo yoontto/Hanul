@@ -2,11 +2,14 @@ package com.member.study;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import net.sf.json.JSONArray;
 
 public class MemberDAO {	
 	//DB 연동 : myBatis FrameWork, 라이브러리 추가해주기
@@ -53,4 +56,6 @@ public class MemberDAO {
 		
 		return result;
 	}//isMember()
+	
+	
 }//class

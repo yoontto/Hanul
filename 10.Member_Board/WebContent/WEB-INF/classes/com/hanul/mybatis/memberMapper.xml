@@ -11,4 +11,8 @@
 	<select id="isMember" parameterType="MemberDTO" resultType="MemberDTO">
 		select * from boardMember where member_id = #{member_id}
 	</select>
+	
+	<select id="idSearchAll" parameterType="MemberDTO" resultType="MemberDTO">
+		select member_id from boardMember
+	</select>
 </mapper>
