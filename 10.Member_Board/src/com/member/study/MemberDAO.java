@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import net.sf.json.JSONArray;
+import net.sf.json.JSONArray;;
 
 public class MemberDAO {	
 	//DB 연동 : myBatis FrameWork, 라이브러리 추가해주기
@@ -57,5 +57,34 @@ public class MemberDAO {
 		return result;
 	}//isMember()
 	
+	//id 리스트 만들기
+	public String idSearchAll() {
+		SqlSession session = sqlMapper.openSession();
+		List<MemberDTO> list = null;
+		list = session.selectList("idSearchAll");
+		session.close();
+		
+		JSONArray array = JSONArray.fromObject(list);
+		String json = array.toString();
+		return json;
+	}//idSearchAll()
 	
+	//전체 회원 목록 검색
+	public List<MemberDTO> getMember_AllList() {
+		SqlSession session = sqlMapper.openSession();
+		List<MemberDTO> list = null;
+		list = session.selectList("getMember_AllList");
+		session.close();
+		return list;
+	}//getMember_AllList()
+	
+	//회원정보 삭제
+	public int deleteMember(String member_id) {
+		SqlSession session = sqlMapper.openSession();
+		int succ = 0;
+		succ = session.delete("deleteMember", member_id);
+		session.commit();
+		session.close();
+		return succ;
+	}//deleteMember()  만들고 다시 Action으로 넘어감
 }//class

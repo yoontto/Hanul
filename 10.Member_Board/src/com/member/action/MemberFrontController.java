@@ -52,8 +52,11 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/memberLogoutAction.me")) {
 			action = new MemberLogoutAction();
 			forward = action.excute(request, response);
-		} else if(command.equals("/MemberJoin_IdCheckAction.me")) {
-			action = new MemberJoin_IdCheckAction();
+		} else if(command.equals("/memberListAction.me")) {	//boardList에서 넘어옴
+			action = new MemberListAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/memberDeleteAction.me")) {	//memberList의 삭제 기능(fnDelete)에서 넘어옴
+			action = new MemberDeleteAction();
 			forward = action.excute(request, response);
 		}
 		

@@ -8,11 +8,20 @@
 		values(#{member_id}, #{member_pw}, #{member_name}, #{member_age}, #{member_gender}, #{member_email})
 	</insert>
 	
-	<select id="isMember" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="isMember" parameterType="MemberDTO" resultType="MemberDTO"> <!-- 파라미터로 값을 넘겨줄 때는 파라미터 타입을 입력해야 함 -->
 		select * from boardMember where member_id = #{member_id}
 	</select>
 	
-	<select id="idSearchAll" parameterType="MemberDTO" resultType="MemberDTO">
+	<select id="idSearchAll" resultType="MemberDTO">
 		select member_id from boardMember
 	</select>
+	
+	<select id="getMember_AllList" resultType="MemberDTO">
+		select * from boardMember
+	</select>
+	
+	<delete id="deleteMember" parameterType="String">	<!-- 파라미터로 값을 넘겨줄 때는 파라미터 타입을 입력해야 함 -->
+		delete from boardMember where member_id = #{member_id}
+	</delete>
+	
 </mapper>
