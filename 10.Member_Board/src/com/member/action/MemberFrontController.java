@@ -58,8 +58,16 @@ public class MemberFrontController extends HttpServlet {
 		} else if(command.equals("/memberDeleteAction.me")) {	//memberList의 삭제 기능(fnDelete)에서 넘어옴
 			action = new MemberDeleteAction();
 			forward = action.excute(request, response);
+		} else if(command.equals("/memberViewAction.me")) {	//관리자모드에서 회원 상세보는 페이지, boardlist에서 넘어옴
+			action = new MemberViewAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/memberDetailAction.me")) {	//boardList의 fnModify에서 넘어옴
+			action = new MemberDetailAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/memberUpdateAction.me")) {
+			action = new MemberUpdateAction();
+			forward = action.excute(request, response);
 		}
-		
 		//3. 페이지전환 방식 정해줘야 함 redirect or forward
 		if(forward != null) {	//true : sendRedirect()
 			 if(forward.isRedirect()) {   //true : sendRedirect()

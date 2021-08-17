@@ -24,4 +24,16 @@
 		delete from boardMember where member_id = #{member_id}
 	</delete>
 	
+	<select id="getDetailMember" parameterType="String" resultType="MemberDTO">	<!-- 파라미터로 값을 넘겨줄 때는 파라미터 타입을 입력해야 함, 생략가능 -->
+	<!-- isMember랑 같은 쿼리지만 파라미터 타입이 다르니까 따로 써줌 -->
+		select * from boardMember where member_id = #{member_id}
+	</select>
+	
+	<select id="getMember_pw" parameterType="String" resultType="String">
+		select member_pw from boardMember where member_id = #{id}
+	</select>
+	
+	<update id="updateMember" parameterType="MemberDTO">
+		update boardMember set member_pw = #{member_pw}, member_name = #{member_name}, member_age = #{member_age}, member_gender = #{member_gender}, member_email = #{member_email} where member_id = #{member_id} 
+	</update>
 </mapper>

@@ -24,8 +24,8 @@ public class MemberDeleteAction implements Action {
 		
 		//관리자 아닐경우 비정상적 접근임을 알려줘야 함
 		//session값이 admin일 경우만 실행
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
+		response.setContentType("text/html; charset=utf-8");	//alert 창 띄우려면 필요함
+		PrintWriter out = response.getWriter();					//스크립트 작성위해 만들어주기
 		if(id == null) {	//로그인이 안된 상태
 			out.println("<script>alert('로그인하시기 바랍니다.');");
 			out.println("location.href='memberLogin.me';</script>");

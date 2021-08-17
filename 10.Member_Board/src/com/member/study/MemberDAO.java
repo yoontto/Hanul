@@ -87,4 +87,37 @@ public class MemberDAO {
 		session.close();
 		return succ;
 	}//deleteMember()  만들고 다시 Action으로 넘어감
+	
+	//회원검색 (한 명의 회원정보를 검색)
+	public MemberDTO getDetailMember(String member_id) {
+		SqlSession session = sqlMapper.openSession();
+		MemberDTO dto = null;
+		dto = session.selectOne("getDetailMember", member_id);
+		session.close();
+		return dto;
+	}//getDetailMember()
+	
+	//회원의 비밀번호 불러오기
+	public String getMember_pw(String id) {
+		SqlSession session = sqlMapper.openSession();
+		String member_pw = null;
+		member_pw = session.selectOne("getMember_pw", id);	//id 값 이용해 pw 찾아오는 쿼리
+		session.close();
+		return member_pw;
+	}//getMember_pw()
+	
+	
+	//회원정보 수정 메소드
+	public int updateMember(MemberDTO dto) {
+		SqlSession session = sqlMapper.openSession();
+		int succ = 0;
+		succ = session.update("updateMember", dto);
+		session.commit();
+		session.close();
+		return succ;
+	}//updateMember()
+	
+	
+	
+	
 }//class

@@ -32,7 +32,7 @@ function fnDelete(member_id){	//member_id가 파라미터, 아래의 i.member_id
 	
 	<c:forEach var="i" items="${list}">	<!-- 반복문 -->
 		<tr align="center">
-			<td>${i.member_id }</td>
+			<td><a href ="memberViewAction.me?member_id=${i.member_id }">${i.member_id }</a></td>
 			<td>${i.member_name }</td>
 			<td>
 				<c:if test="${i.member_id eq 'admin'}">삭제 금지</c:if>
@@ -42,6 +42,12 @@ function fnDelete(member_id){	//member_id가 파라미터, 아래의 i.member_id
 			</td>
 		</tr>
 	</c:forEach>
+	<tr align="center">
+		<td colspan="3">
+			<input type="button" value="로그아웃" onclick="location.href='memberLogoutAction.me'">
+			<input type="button" value="게시판 목록보기" onclick="location.href='boardList.bo'">
+		</td>
+	</tr>
 </table>
 </div>
 </body>

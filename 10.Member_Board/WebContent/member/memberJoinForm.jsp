@@ -94,8 +94,8 @@ $(document).ready(function() {
 	});//pw_keyup
 	
 	//email 유효성 검사
-	$("#member_email").keyup(function(){
-		var email = $("#member_email").val();
+	$("#member_email2").keyup(function(){
+		var email = $("#member_email2").val();
 		var regEmail = /^[a-z0-9]{5,20}$/;
 		if(!regEmail.test(email)){
 			var emailMsg = "정확한 이메일을 입력하세요!";
@@ -199,13 +199,16 @@ function fnCheck(check) {
 
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" name="member_email" id="member_email" required="required" style="width:100px">
-						@<select name="email">
-							<option>naver.com</option>
-							<option>daum.net</option>
-							<option>gmail.com</option>
-							<option>hanmail.net</option>
-						</select><br>
+					<td>
+					<span id="member_email">
+						<input type="text" name="member_email" id="member_email2" required="required" style="width:100px">
+							@<select name="email">
+								<option>naver.com</option>
+								<option>daum.net</option>
+								<option>gmail.com</option>
+								<option>hanmail.net</option>
+							</select><br>
+						</span>
 						<span id="emailCheck"></span> <!-- 유효성 검사 -->
 					</td>
 				</tr>
