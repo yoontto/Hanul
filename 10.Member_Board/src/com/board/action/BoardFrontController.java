@@ -40,6 +40,9 @@ public class BoardFrontController extends HttpServlet {
 			forward = new ActionForward();
 			forward.setPath("board/boardWrite.jsp");
 			forward.setRedirect(false);	//url 안바뀜
+		} else if(command.equals("/boardAddAction.bo")) {	//boardWrite.jsp에서 넘어옴
+			action = new BoardAddAction();
+			forward = action.excute(request, response);
 		}
 		
 		
