@@ -108,18 +108,43 @@ public class BoardDAO {		//DB 연동 : JDBC FrameWork 연동, old working type, 
 	//전체 글 목록 검색(페이징 처리와 같이)
 	public ArrayList<BoardDTO> getBoardList(int page, int limit) {
 		conn = getConn();
-		String sql = "";
+		String sql = "select * from ";
+		sql += "(select rownum rnum, board_num, board_id, board_subject, board_content, "
+				+ "board_file, board_re_ref, board_re_lev, board_re_seq, board_readcount, board_date from ";
+		
+		sql += "(select * from memberBoard order by board_re_ref desc, board_re_seq asc))";
+		sql += "where rnum >= ? and rnum <= ?";
+		
+		int startRow = (page - 1) * limit + 1;	//읽기 시작할 rownum
+		int endRow = startRow + limit - 1;		//마지막으로 읽을 rownum
+		
 		ArrayList<BoardDTO> list = new ArrayList<>();
 		try {
-			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, startRow);
+			ps.setInt(2, endRow);
+			rs = ps.executeQuery();	
+			while (rs.next()) {
+				BoardDTO dto = new BoardDTO();
+				dto.setBoard_num(rs.getInt("board_num"));
+				dto.setBoard_id(rs.getString("board_id"));
+				dto.setBoard_subject(rs.getString("board_subject"));
+				dto.setBoard_content(rs.getString("board_content"));
+				dto.setBoard_file(rs.getString("board_file"));
+				dto.setBoard_re_ref(rs.getInt("board_re_ref"));
+				dto.setBoard_re_lev(rs.getInt("board_re_lev"));
+				dto.setBoard_re_seq(rs.getInt("board_re_seq"));
+				dto.setBoard_readcount(rs.getInt("board_readcount"));
+				dto.setBoard_date(rs.getDate("board_date"));
+				list.add(dto);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("getBoardList() Exception!");
 		} finally {
 			dbClose();
 		}
-		
-		return null;
+		return list;
 	}
 	
 	

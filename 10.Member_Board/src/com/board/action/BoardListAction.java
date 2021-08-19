@@ -22,6 +22,7 @@ public class BoardListAction implements Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		
+		
 		//비지니스 로직 : DB 접속 후 전체글 목록 검색, 페이징 처리
 		BoardDAO dao = new BoardDAO();
 		int listCount = dao.getListCount();	//전체 글 개수 검색
@@ -32,6 +33,29 @@ public class BoardListAction implements Action {
 		}
 		ArrayList<BoardDTO> list = new ArrayList<>();
 		list = dao.getBoardList(page, limit);	//전체 글 목록 검색
+
+		/*아래의 전체 페이지 수와 현재 페이지 수 구하는 법은 전형적인 계산식*/
+		//전체 페이지 수
+		int maxPage = (int)((double)listCount / limit + 0.95);
+		
+		//현재 페이지에서 보여줄 시작되는 글 번호
+		int startPage = (((int)((double)page / limit + 0.95)) - 1) * limit + 1;
+		
+		//현재 페이지에서 보여줄 마지막 글번호 (10,20,30)
+		int endPage = maxPage;
+		if(endPage > startPage + limit - 1) {
+			endPage = startPage + limit - 1;
+		}
+		
+		//바인딩 객체 생성 : 출력 페이지로 전달
+		request.setAttribute("page", page);				//현재 페이지 수
+		request.setAttribute("maxPage", maxPage);		//전체 페이지 수
+		request.setAttribute("startPage", startPage);	//첫 페이지수
+		request.setAttribute("endPage", endPage);		//마지막 페이지수
+		request.setAttribute("listCount", listCount);	//전체 글의 개수
+		request.setAttribute("list", list);				//전체 글 목록
+		
+		
 		//프리젠테이션 로직
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
