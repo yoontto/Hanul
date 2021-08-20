@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.commons.action.Action;
 import com.commons.action.ActionForward;
 
-/**
- * Servlet implementation class BoardFrontController
- */
+
 @WebServlet("/BoardFrontController.bo")
 public class BoardFrontController extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
@@ -43,8 +41,28 @@ public class BoardFrontController extends HttpServlet {
 		} else if(command.equals("/boardAddAction.bo")) {	//boardWrite.jsp에서 넘어옴
 			action = new BoardAddAction();
 			forward = action.excute(request, response);
+		} else if(command.equals("/boardDetailAction.bo")) {
+			action = new BoardDetailAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/boardDeleteAction.bo")) {
+			action = new BoardDeleteAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/boardModifyView.bo")) {
+			action = new BoardModifyView();
+			forward = action.excute(request, response);
+		} else if(command.equals("/boardModifyAction.bo")) {
+			action = new BoardModifyAction();
+			forward = action.excute(request, response);
+		} else if (command.equals("/boardReplyView.bo")) {
+			action = new BoardReplyView();
+			forward = action.excute(request, response);
+		} else if (command.equals("/boardReplyAction.bo")) {
+			action = new BoardReplyAction();
+			forward = action.excute(request, response);
+		} else if(command.equals("/boardSearch.bo")) {
+			action = new BoardSearchAction();
+			forward = action.excute(request, response);
 		}
-		
 		
 		//3. 페이지전환 방식 정해줘야 함 redirect or forward
 		if(forward != null) {	//true : sendRedirect()

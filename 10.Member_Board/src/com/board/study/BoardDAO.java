@@ -147,6 +147,216 @@ public class BoardDAO {		//DB 연동 : JDBC FrameWork 연동, old working type, 
 		return list;
 	}
 	
+	//특정 글 검색
+	public BoardDTO getDetail(int board_num) {
+		conn = getConn();
+		String sql = "select * from memberBoard where board_num = ?";
+		BoardDTO dto = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board_num);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				dto = new BoardDTO();
+				dto.setBoard_num(rs.getInt("board_num"));
+				dto.setBoard_id(rs.getString("board_id"));
+				dto.setBoard_subject(rs.getString("board_subject"));
+				dto.setBoard_content(rs.getString("board_content"));
+				dto.setBoard_file(rs.getString("board_file"));
+				dto.setBoard_re_ref(rs.getInt("board_re_ref"));
+				dto.setBoard_re_lev(rs.getInt("board_re_lev"));
+				dto.setBoard_re_seq(rs.getInt("board_re_seq"));
+				dto.setBoard_readcount(rs.getInt("board_readcount"));
+				dto.setBoard_date(rs.getDate("board_date"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("getDetail Exception!");
+		} finally {
+			dbClose();
+		}
+		return dto;
+	}//getDetail()
+	
+	//조회수 증가
+	public void readCount(int board_num) {
+		conn = getConn();
+		String sql = "update memberBoard set board_readcount = "
+				+ "board_readcount + 1 where board_num = ?";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board_num);
+			ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("readCount exception!");
+		} finally {
+			dbClose();
+		}
+		
+	}//readCount
+	
+	
+	//작성자 확인
+	public boolean isBoardWriter(int board_num, String id) {
+		conn = getConn();
+		String sql = "select * from memberBoard where board_num = ?";
+		boolean result = false;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board_num);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				if(id.equals(rs.getString("board_id"))) {	//로그인한 아이디와 db에 저장된 아이디가 같을 경우
+					result = true;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("isBoardWriter Exception!");
+		} finally {
+			dbClose();
+		}
+		return result;
+	}//isBoardWriter()
+	
+	//글 삭제
+	public int boardDelete(int board_num) {
+		conn = getConn();
+		String sql = "delete from memberBoard where board_num = ?";
+		int succ = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board_num);
+			succ = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("boardDelete exception!");
+		} finally {
+			dbClose();
+		}
+		return succ;
+	}//boardDelete
+	
+	
+	//글 수정
+	public int boardUpdate(BoardDTO dto) {
+		conn = getConn();
+		String sql = "update memberBoard set board_subject = ?, board_content = ? where board_num = ?";
+		int succ = 0;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getBoard_subject());
+			ps.setString(2, dto.getBoard_content());
+			ps.setInt(3, dto.getBoard_num());
+			succ = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("boardUpdate exception!");
+		} finally {
+			dbClose();
+		}
+		return succ;
+	}
+	
+	
+	//답글 등록
+	public int boardReply(BoardDTO dto) {
+		conn = getConn();
+		String sql = "";
+		int succ = 0;
+		try {
+			sql = "select max(board_num) from memberBoard";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			int b_num = 0;
+			if(rs.next()) {
+				b_num = rs.getInt(1);	//b_num = res.getInt("max(board_num)");
+				b_num = b_num + 1;
+			}
+			
+			int board_re_ref = dto.getBoard_re_ref();	//글의 그룹번호
+			int board_re_lev = dto.getBoard_re_lev();	//답글의 깊이 
+			int board_re_seq = dto.getBoard_re_seq();	//답글의 순서
+			
+			sql = "update memberBoard set board_re_seq = board_re_seq + 1";
+			sql += "where board_re_ref = ? and board_re_seq > ?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, board_re_ref);
+			ps.setInt(2, board_re_seq);
+			ps.executeUpdate();
+			
+			board_re_lev += 1;
+			board_re_seq += 1;
+			
+			sql = "insert into memberBoard values(?,?,?,?,?,?,?,?,?,sysdate)";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, b_num);
+			ps.setString(2, dto.getBoard_id());
+			ps.setString(3, dto.getBoard_subject());
+			ps.setString(4, dto.getBoard_content());
+			ps.setString(5, "");	//파일첨부 기능이 없다
+			ps.setInt(6, board_re_ref);
+			ps.setInt(7, board_re_lev);
+			ps.setInt(8, board_re_seq);
+			ps.setInt(9, 0);
+			succ = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("boardReply Exception!");
+		} finally {
+			dbClose();
+		}
+		return succ;
+	}
+	
+	
+	//조건 검색
+	public ArrayList<BoardDTO> boardSearch(BoardSearchDTO sdto) {	//searchDTO 와 boardDTO 객체 이름이 같아지니까 sdto로 설정
+		conn = getConn();
+		//String sql = "select * from memberBoard where (?) like (?)";
+		String sql = "select * from memberBoard where "
+				+ "upper("+sdto.getPart()+") like upper('"+sdto.getSearchData()+"')";
+		ArrayList<BoardDTO> list = new ArrayList<>();
+		try {
+			ps = conn.prepareStatement(sql);
+			//ps.setString(1, sdto.getPart());
+			//ps.setString(2, sdto.getSearchData());
+			rs = ps.executeQuery();
+			while (rs.next()) {		//전체글 검색에서 가져온 문장들
+				BoardDTO dto = new BoardDTO();
+				dto.setBoard_num(rs.getInt("board_num"));
+				dto.setBoard_id(rs.getString("board_id"));
+				dto.setBoard_subject(rs.getString("board_subject"));
+				dto.setBoard_content(rs.getString("board_content"));
+				dto.setBoard_file(rs.getString("board_file"));
+				dto.setBoard_re_ref(rs.getInt("board_re_ref"));
+				dto.setBoard_re_lev(rs.getInt("board_re_lev"));
+				dto.setBoard_re_seq(rs.getInt("board_re_seq"));
+				dto.setBoard_readcount(rs.getInt("board_readcount"));
+				dto.setBoard_date(rs.getDate("board_date"));
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("boardSearch Exception!");
+		} finally {
+			dbClose();
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

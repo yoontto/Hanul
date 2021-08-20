@@ -79,12 +79,37 @@ function fnModify(id, member_pw){
 			<c:forEach var="i" begin="0" end="${fn:length(list) - 1}" step="1">
 				<tr align="center">
 					<td>${list[i].board_num}</td>
-					<td>${list[i].board_subject}</td>
+					<td align="left">
+						<c:if test="${list[i].board_re_lev ne 0 }">
+							<c:forEach var="j" begin="1" end="${(list[i].board_re_lev - 1) * 2}" step="1">
+								&nbsp;
+							</c:forEach>
+							→ Re : 
+						</c:if>
+						<a href="boardDetailAction.bo?board_num=${list[i].board_num}">
+						${list[i].board_subject}</a>
+						<!-- 넘어갈 때 넘버 가져가게 처리 -->
+					</td>
 					<td>${list[i].board_id}</td>
 					<td>${list[i].board_date}</td>
 					<td>${list[i].board_readcount}</td>
 				</tr>
 			</c:forEach>
+				
+				<!-- 조건검색 -->
+				<tr align="center">
+					<td colspan="5">
+						<form action="boardSearch.bo" method="post">
+							<select name="part">
+								<option value="board_subject">제목</option>
+								<option value="board_content">내용</option>
+								<option value="board_id">작성자</option>
+							</select>
+							<input type="text" name="searchData" required="required">
+							<input type="submit" value="검색하기">
+						</form>
+					</td>
+				</tr>
 			
 			
 			<!-- 페이징 처리 -->
